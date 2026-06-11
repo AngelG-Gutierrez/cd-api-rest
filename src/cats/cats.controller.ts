@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CatsService } from './cats.service';
-import { Cat } from './entities/cat.entity';
+import type { Cat } from './entities/cat.entity';
+import { CreateCatDto } from './dto/create-cat.dto';
 
 @Controller('cats')
 export class CatsController {
@@ -9,5 +10,10 @@ export class CatsController {
   @Get()
   findAllCats(): Cat[] {
     return this.catsService.findAllCats();
+  }
+
+  @Post()
+  createCat(@Body() newCat: CreateCatDto): Cat {
+    return this.catsService.createCat(newCat as Cat);
   }
 }

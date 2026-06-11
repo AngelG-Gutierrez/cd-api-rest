@@ -44,4 +44,13 @@ export class CatsService {
   findAllCats(): Cat[] {
     return this.cats;
   }
+
+  createCat(cat: Cat): Cat {
+    const catData = {
+      ...cat,
+      id: this.cats.length + 1,
+    };
+    this.cats.push(catData);
+    return catData;
+  }
 }
