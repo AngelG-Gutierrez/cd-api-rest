@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { FishesService } from './fishes.service';
-import { Fish } from './entities/fish.entity';
+import type { Fish } from './entities/fish.entity';
 
 @Controller('fishes')
 export class FishesController {
@@ -9,5 +9,10 @@ export class FishesController {
   @Get()
   findAll(): Fish[] {
     return this.fishesService.findAllFishes();
+  }
+
+  @Get(':id')
+  getFish(@Param('id') id: string): Fish {
+    return this.fishesService.getFish(parseInt(id));
   }
 }

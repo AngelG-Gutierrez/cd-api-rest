@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Fish } from './entities/fish.entity';
 
 @Injectable()
@@ -43,5 +43,13 @@ export class FishesService {
 
   findAllFishes(): Fish[] {
     return this.fishes;
+  }
+
+  getFish(id: number): Fish {
+    const fish = this.fishes.find((f) => f.id === id);
+    if (!fish) {
+      throw new NotFoundException(`El pez con el id ${id} no fue encontrado`);
+    }
+    return fish;
   }
 }
