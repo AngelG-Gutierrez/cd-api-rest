@@ -61,4 +61,12 @@ export class CatsService {
     this.cats.push(catData);
     return catData;
   }
+
+  updateCat(id: number, cat: Cat): string {
+    const index = this.cats.findIndex((cat) => cat.id === id);
+    if (index !== -1) {
+      this.cats[index] = { ...this.cats[index], ...cat };
+    }
+    return 'ok';
+  }
 }
