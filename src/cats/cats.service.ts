@@ -69,4 +69,12 @@ export class CatsService {
     }
     return 'ok';
   }
+
+  deleteCat(id: number): string {
+    const cat = this.cats.findIndex((item) => item.id == id);
+    if (cat !== -1) {
+      this.cats.splice(cat, 1);
+    }
+    return 'deleted';
+  }
 }
