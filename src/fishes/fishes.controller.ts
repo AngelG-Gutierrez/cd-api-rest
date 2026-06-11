@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { FishesService } from './fishes.service';
 import type { Fish } from './entities/fish.entity';
 import { CreateFishDto } from './dto/create-fish.dto';
@@ -26,5 +34,10 @@ export class FishesController {
   @Patch(':id')
   updateFish(@Param('id') id: string, @Body() FishData: UpdateFishDto): string {
     return this.fishesService.updateFish(parseInt(id), FishData as Fish);
+  }
+
+  @Delete(':id')
+  deleteFish(@Param('id') id: string) {
+    return this.fishesService.deleteFish(parseInt(id));
   }
 }

@@ -69,4 +69,12 @@ export class FishesService {
     }
     return 'ok';
   }
+
+  deleteFish(id: number): string {
+    const fish = this.fishes.findIndex((item) => item.id == id);
+    if (fish !== -1) {
+      this.fishes.splice(fish, 1);
+    }
+    return 'deleted';
+  }
 }
