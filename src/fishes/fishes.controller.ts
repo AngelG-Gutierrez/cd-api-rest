@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { FishesService } from './fishes.service';
 import type { Fish } from './entities/fish.entity';
 import { CreateFishDto } from './dto/create-fish.dto';
+import { UpdateFishDto } from './dto/update-fish.dto';
 
 @Controller('fishes')
 export class FishesController {
@@ -20,5 +21,10 @@ export class FishesController {
   @Post()
   create(@Body() newFish: CreateFishDto): Fish {
     return this.fishesService.createFish(newFish as Fish);
+  }
+
+  @Patch(':id')
+  updateFish(@Param('id') id: string, @Body() FishData: UpdateFishDto): string {
+    return this.fishesService.updateFish(parseInt(id), FishData as Fish);
   }
 }

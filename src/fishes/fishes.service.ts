@@ -61,4 +61,12 @@ export class FishesService {
     this.fishes.push(fishData);
     return fishData;
   }
+
+  updateFish(id: number, fish: Fish): string {
+    const index = this.fishes.findIndex((fish) => fish.id === id);
+    if (index !== -1) {
+      this.fishes[index] = { ...this.fishes[index], ...fish };
+    }
+    return 'ok';
+  }
 }
