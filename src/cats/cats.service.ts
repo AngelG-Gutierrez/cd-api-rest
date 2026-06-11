@@ -1,4 +1,47 @@
 import { Injectable } from '@nestjs/common';
+import { Cat } from './entities/cat.entity';
 
 @Injectable()
-export class CatsService {}
+export class CatsService {
+  private cats: Cat[] = [
+    {
+      id: 1,
+      name: 'Bigotes',
+      breed: 'Siamese',
+      color: 'Seal Point',
+      eyeColor: 'Blue',
+    },
+    {
+      id: 2,
+      name: 'Nala',
+      breed: 'Persian',
+      color: 'White',
+      eyeColor: 'Green',
+    },
+    {
+      id: 3,
+      name: 'Tom',
+      breed: 'Bobtail',
+      color: 'Tabby',
+      eyeColor: 'Amber',
+    },
+    {
+      id: 4,
+      name: 'Luna',
+      breed: 'Munchkin',
+      color: 'Black',
+      eyeColor: 'Yellow',
+    },
+    {
+      id: 5,
+      name: 'Simba',
+      breed: 'Bengal',
+      color: 'Spotted Rosette',
+      eyeColor: 'Aqua',
+    },
+  ];
+
+  findAllCats(): Cat[] {
+    return this.cats;
+  }
+}
