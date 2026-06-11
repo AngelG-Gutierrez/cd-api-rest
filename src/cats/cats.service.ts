@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Cat } from './entities/cat.entity';
 
 @Injectable()
@@ -43,6 +43,14 @@ export class CatsService {
 
   findAllCats(): Cat[] {
     return this.cats;
+  }
+
+  getCat(id: number): Cat {
+    const cat = this.cats.find((item) => item.id == id);
+    if (!cat) {
+      throw new NotFoundException(`El gato con el id ${id} no fue encontrado`);
+    }
+    return cat;
   }
 
   createCat(cat: Cat): Cat {

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import type { Cat } from './entities/cat.entity';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -10,6 +10,11 @@ export class CatsController {
   @Get()
   findAllCats(): Cat[] {
     return this.catsService.findAllCats();
+  }
+
+  @Get(':id')
+  getTask(@Param('id') id: string): Cat {
+    return this.catsService.getCat(parseInt(id));
   }
 
   @Post()
