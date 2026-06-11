@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { FishesService } from './fishes.service';
 import type { Fish } from './entities/fish.entity';
+import { CreateFishDto } from './dto/create-fish.dto';
 
 @Controller('fishes')
 export class FishesController {
@@ -14,5 +15,10 @@ export class FishesController {
   @Get(':id')
   getFish(@Param('id') id: string): Fish {
     return this.fishesService.getFish(parseInt(id));
+  }
+
+  @Post()
+  create(@Body() newFish: CreateFishDto): Fish {
+    return this.fishesService.createFish(newFish as Fish);
   }
 }

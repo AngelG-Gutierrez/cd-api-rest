@@ -52,4 +52,13 @@ export class FishesService {
     }
     return fish;
   }
+
+  createFish(fish: Fish): Fish {
+    const fishData = {
+      ...fish,
+      id: this.fishes.length + 1,
+    };
+    this.fishes.push(fishData);
+    return fishData;
+  }
 }
