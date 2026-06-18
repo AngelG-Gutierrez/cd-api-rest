@@ -8,8 +8,23 @@ generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
   moduleFormat    = "cjs"
+
 }
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  username String @unique
+  name String
+  image String?
+  password String
+  active Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime? @updatedAt
 }
